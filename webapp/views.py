@@ -27,4 +27,8 @@ def task_delete_view(request, pk):
         task.delete()
     return redirect('task_list')
 
+def task_detail_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    return render(request, 'task_detail.html', {'task': task})
+
 
