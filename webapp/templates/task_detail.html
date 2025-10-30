@@ -11,7 +11,7 @@
             <p class="mb-3"><span class="text-muted">Срок:</span>
                 {% if task.due_date %}{{ task.due_date|date:"d.m.Y" }}{% else %}—{% endif %}
             </p>
-
+        
             <div class="text-muted mb-1">Подробное описание:</div>
             <div class="border rounded p-3 bg-white" style="white-space: pre-wrap;">
                 {{ task.description_detail|default:"(не заполнено)" }}

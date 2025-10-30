@@ -7,5 +7,3 @@ urlpatterns = [
     path('delete/<int:pk>/', task_delete_view, name='task_delete'),
     path('task/<int:pk>/', task_detail_view, name='task_detail'),
 ]
-
-
