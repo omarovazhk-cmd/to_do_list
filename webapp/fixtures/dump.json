@@ -1,0 +1,60 @@
+﻿[
+{
+  "model": "webapp.task",
+  "pk": 3,
+  "fields": {
+    "description": "Собрать чемодан",
+    "status": "done",
+    "due_date": null,
+    "description_detail": null
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 4,
+  "fields": {
+    "description": "Купить билеты",
+    "status": "new",
+    "due_date": "2025-11-17",
+    "description_detail": "ИП Виктор\r\nТОО\r\nИП Дина\r\nИП Бухглатерии"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 5,
+  "fields": {
+    "description": "Купить билеты",
+    "status": "new",
+    "due_date": "2025-11-09",
+    "description_detail": null
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 6,
+  "fields": {
+    "description": "Завершить дела в Алматы",
+    "status": "new",
+    "due_date": "2025-11-08",
+    "description_detail": "решить медстраховку\r\nкупить книгу\r\nпозвонить в 1414"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$I5ecQOWFom5otSvthj0JQZ$Fw0LMxcstbNV1GGCsAfMBobDKL/AMk5taZYv3+dJ+LA=",
+    "last_login": "2025-10-30T10:43:29.936Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-26T10:26:50.853Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

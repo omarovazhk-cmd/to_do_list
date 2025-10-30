@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3 class="mb-3">Создать задачу</h3>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">{{ form.description.label_tag }} {{ form.description }}</div>
+                <div class="mb-3">{{ form.status.label_tag }} {{ form.status }}</div>
+                <div class="mb-3">{{ form.due_date.label_tag }} {{ form.due_date }}</div>
+                <div class="mb-3">{{ form.description_detail.label_tag }} {{ form.description_detail }}</div>
+                <button class="btn btn-primary">Сохранить</button>
+                <a href="{% url 'task_list' %}" class="btn btn-secondary ms-2">К списку</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
