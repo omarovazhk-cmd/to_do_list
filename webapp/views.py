@@ -16,10 +16,10 @@ def task_create_view(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('task_list')
-    else:
-        form = TaskForm()
-    return render(request, 'task_create.html', {'form': form})
+            return redirect(reverse('task_list'))
+        else:
+            form = TaskForm()
+        return render(request, 'task_create.html', {'form': form})
 
 def task_delete_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
@@ -29,6 +29,6 @@ def task_delete_view(request, pk):
 
 def task_detail_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
-    return render(request, 'task_detail.html', {'task': task})
+    return redirect(reverse('task_list'))
 
 
