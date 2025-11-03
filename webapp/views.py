@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from webapp.models import Task
-from webapp.forms import TaskForm
 
 
 def task_list_view(request):
@@ -11,13 +10,19 @@ def task_list_view(request):
 
 def task_create_view(request):
     if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('task_list'))
-    else:
-        form = TaskForm()
-    return render(request, 'task_create.html', {'form': form})
+        description = request.POST.get('description')
+        status = request.POST.get('status')
+        due_date = request.POST.get('due_date')
+
+        if description:
+            Task.objects.create(
+                description=description,
+                status=status,
+                due_date=due_date
+            )
+        return redirect('task_list')
+
+    return render(request, 'task_create.html')
 
 
 def task_detail_view(request, pk):
