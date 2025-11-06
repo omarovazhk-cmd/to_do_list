@@ -12,7 +12,7 @@ def task_create_view(request):
     if request.method == 'POST':
         description = request.POST.get('description')
         status = request.POST.get('status')
-        due_date = request.POST.get('due_date')
+        due_date = request.POST.get('due_date') or None
 
         if description:
             Task.objects.create(
@@ -35,3 +35,17 @@ def task_delete_view(request, pk):
     if request.method == 'POST':
         task.delete()
     return redirect(reverse('task_list'))
+
+
+def task_update_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'POST':
+        task.description = request.POST.get('description')
+        task.status = request.POST.get('status')
+        task.due_date = request.POST.get('due_date') or None
+        if hasattr(task, 'description_detail'):
+            task.description_detail = request.POST.get('description_detail') or ''
+        task.save()
+        return redirect('task_detail', pk=task.pk)
+
+    return render(request, 'task_edit.html', {'task': task})
