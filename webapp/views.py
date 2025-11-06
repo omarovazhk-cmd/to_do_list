@@ -34,7 +34,8 @@ def task_delete_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == 'POST':
         task.delete()
-    return redirect(reverse('task_list'))
+        return redirect('/')
+    return render(request, 'task_confirm_delete.html', {'task': task})
 
 
 def task_update_view(request, pk):
