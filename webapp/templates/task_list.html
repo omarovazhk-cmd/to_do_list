@@ -18,17 +18,21 @@
         {% for task in tasks %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="fw-semibold">{{ task.description }}</div>
+                    <div class="fw-semibold">
+                        <a href="/task/{{ task.pk }}/" class="link-body-emphasis text-decoration-none">
+                            {{ task.description }}
+                        </a>
+                    </div>
                     <small class="text-muted">
                         Статус: {{ task.get_status_display }}
                         {% if task.due_date %} Срок: {{ task.due_date|date:"d.m.Y" }} г. {% endif %}
                     </small>
                 </div>
 
-                <form method="post" action="/delete/{{ task.pk }}/">
-                    {% csrf_token %}
-                    <button class="btn btn-outline-danger btn-sm">Удалить</button>
-                </form>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-primary btn-sm" href="/edit/{{ task.pk }}/">Изменить</a>
+                    <a href="/delete/{{ task.pk }}/" class="btn btn-outline-danger btn-sm">Удалить</a>
+                </div>
             </li>
         {% endfor %}
     </ul>

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    <a class="btn btn-secondary mb-3" href="/task/{{ task.pk }}/">← Назад</a>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title mb-3">Редактировать задачу №{{ task.id }}</h4>
+
+            <form method="post" action="/edit/{{ task.pk }}/">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Описание</label>
+                    <input type="text" name="description" class="form-control" value="{{ task.description }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Статус</label>
+                    <select name="status" class="form-select">
+                        <option value="new" {% if task.status == 'new' %}selected{% endif %}>Новая</option>
+                        <option value="in_progress" {% if task.status == 'in_progress' %}selected{% endif %}>В
+                            процессе
+                        </option>
+                        <option value="done" {% if task.status == 'done' %}selected{% endif %}>Сделано</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Срок</label>
+                    <input type="date" name="due_date" class="form-control" value="{{ task.due_date|date:'Y-m-d' }}">
+                </div>
+
+                {% if task.description_detail is not None %}
+                    <div class="mb-3">
+                        <label class="form-label">Подробное описание</label>
+                        <textarea name="description_detail" class="form-control"
+                                  rows="4">{{ task.description_detail }}</textarea>
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-success">Сохранить</button>
+                <a href="/task/{{ task.pk }}/" class="btn btn-link ms-2">Отмена</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

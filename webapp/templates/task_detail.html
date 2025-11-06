@@ -1,28 +1,27 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <a class="btn btn-secondary mb-3" href="{% url 'task_list' %}">← К списку</a>
+    <a class="btn btn-secondary mb-3" href="/">← К списку</a>
 
     <div class="card shadow-sm">
         <div class="card-body">
-            <h4 class="card-title mb-3">Задача #{{ task.id }}</h4>
-        
+            <h4 class="card-title mb-3">Задача №{{ task.id }}</h4>
+
             <p class="mb-1"><span class="text-muted">Кратко:</span> {{ task.description }}</p>
             <p class="mb-1"><span class="text-muted">Статус:</span> {{ task.get_status_display }}</p>
-            <p class="mb-3"><span class="text-muted">Срок:</span>
-                {% if task.due_date %}{{ task.due_date|date:"d.m.Y" }}{% else %}—{% endif %}
-            </p>
-        
+
+            {% if task.due_date %}
+                <p class="mb-3"><span class="text-muted">Срок:</span> {{ task.due_date|date:"d.m.Y" }}</p>
+            {% endif %}
+
             <div class="text-muted mb-1">Подробное описание:</div>
             <div class="border rounded p-3 bg-white" style="white-space: pre-wrap;">
                 {{ task.description_detail|default:"(не заполнено)" }}
             </div>
         </div>
-
-        <div class="card-footer">
-            <form method="post" action="{% url 'task_delete' task.pk %}">
-                {% csrf_token %}
-                <button class="btn btn-outline-danger btn-sm">Удалить</button>
-            </form>
+        <div class="card-footer d-flex gap-2">
+            <a class="btn btn-outline-primary btn-sm" href="/edit/{{ task.pk }}/">Изменить</a>
+            <a href="/delete/{{ task.pk }}/" class="btn btn-outline-danger btn-sm">Удалить</a>
         </div>
     </div>
 {% endblock %}
