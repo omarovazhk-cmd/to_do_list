@@ -21,10 +21,7 @@
         </div>
         <div class="card-footer d-flex gap-2">
             <a class="btn btn-outline-primary btn-sm" href="/edit/{{ task.pk }}/">Изменить</a>
-            <form method="post" action="/delete/{{ task.pk }}/">
-                {% csrf_token %}
-                <button class="btn btn-outline-danger btn-sm">Удалить</button>
-            </form>
+            <a href="/delete/{{ task.pk }}/" class="btn btn-outline-danger btn-sm">Удалить</a>
         </div>
     </div>
 {% endblock %}
